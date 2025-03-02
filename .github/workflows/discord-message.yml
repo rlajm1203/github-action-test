@@ -16,7 +16,7 @@ jobs:
           # GitHub Actions ?? ? ?? ?? ??? ????
           BRANCH_NAME: ${{ github.ref }}
           WORKFLOW_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          COMMIT_MESSAGE: $(git log -1 --pretty=%B)
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
           TIMESTAMP: ${{ github.event.created_at }}
         run: |
                   # JSON Payload ??
