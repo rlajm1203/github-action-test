@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Discord Webhook Action
+        env:
+          # GitHub Actions ?? ? ?? ?? ??? ????
+          BRANCH_NAME: ${{ github.ref }}
+          WORKFLOW_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          COMMIT_MESSAGE: $(git log -1 --pretty=%B)
+          TIMESTAMP: $(date -u +%Y-%m-%dT%H:%M:%SZ)
         run: |
-                  # GitHub Actions ?? ? ?? ?? ??? ????
-                  BRANCH_NAME="${{ github.ref }}"
-                  WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                  COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-                  TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-
                   # JSON Payload ??
                   DATA=$(cat <<EOF
                   {
