@@ -1,0 +1,19 @@
+name: ???? ??? ?? ???
+
+on:
+  push:
+      branches:
+        - main
+env:
+  DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+
+jobs:
+  send-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord Webhook Action
+        uses: Ilshidur/discord-webhook@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: "github-action-test"
