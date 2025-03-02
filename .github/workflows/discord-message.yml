@@ -16,7 +16,7 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-          BRANCH_NAME: ${{ github.event.head_ref }}
+          BRANCH_NAME: ${{ github.head_ref }}
           WORKFLOW_URL: ${{ github.event.workflow_url }}
           TIMESTAMP: ${{ github.event.repository.updated_at }}
         run: |
