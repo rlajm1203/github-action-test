@@ -11,7 +11,7 @@ jobs:
   send-message:
     runs-on: ubuntu-latest
     steps:
-      - name: Discord Webhook Action
+      - name: ???? ?? ???
         env:
           # GitHub Actions ?? ? ?? ?? ??? ????
           BRANCH_NAME: ${{ github.ref }}
@@ -73,3 +73,7 @@ jobs:
 
                   # Discord Webhook ??
                   curl -X POST -H "Content-Type: application/json" -d "$DATA" "${{ secrets.DISCORD_WEBHOOK_URL }}"
+      - name: JSON ??? ???
+        run: |
+          echo "===== JSON PAYLOAD ====="
+          echo "$DATA" | jq
