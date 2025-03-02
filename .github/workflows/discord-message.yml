@@ -21,7 +21,7 @@ jobs:
 #          TIMESTAMP: ${{ github.event.repository.updated_at }}
         run: |
                   # 현재 시간
-                  TIMESTAMP=$(TZ='Asia/Seoul' date +%s)
+                  TIMESTAMP=$(TZ='Asia/Seoul' date +%s%3N)
                   # JSON Payload 생성
                   DATA=$(cat <<EOF
                   {
