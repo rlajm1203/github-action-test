@@ -27,7 +27,7 @@ jobs:
                     "avatar_url": "https://i.namu.wiki/i/X6s5AIfkjae-h54b7EkMYVg7ityFni1B-YIhtck0g6P914sJTsjykJDEbrsoZdV8rmwmrcyioAH3d2CxLmjxLx20dpHZI1izwMjfs7Dvtuchchyt2HDu7iQyy02_QaU6b8RrxWBt4G0PMQ0IZTykpQ.webp",
                     "embeds": [
                       {
-                        "title": "배포가 성공했어요~",
+                        "title": "🎉🎉배포가 성공했어요~!🎉🎉",
                         "description" : "배포 알림이 도착했어요~",
                         "type": "rich",
                         "color": 123456,
@@ -43,7 +43,7 @@ jobs:
                           },    
                           {
                             "name": "커밋 메시지",
-                            "value": "$COMMIT_MESSAGE",
+                            "value": "\`$COMMIT_MESSAGE\`",
                             "inline": false
                           },
                           {
@@ -53,7 +53,7 @@ jobs:
                           },    
                           {
                             "name": "브랜치",
-                            "value": "$BRANCH_NAME",
+                            "value": "\`$BRANCH_NAME\`",
                             "inline": false
                           },
                           {
@@ -63,7 +63,7 @@ jobs:
                           },    
                           {
                             "name": "배포 환경",
-                            "value": "Dev",
+                            "value": "\`Dev\`",
                             "inline": false
                           },
                           {
