@@ -19,7 +19,10 @@ jobs:
           BRANCH_NAME: ${{ github.ref_name }}
           WORKFLOW_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           TIMESTAMP: ${{ github.event.repository.updated_at }}
+          ENVIRONMENT: main
         run: |
+          COMMIT_MESSAGE=$(echo "$COMMIT_MESSAGE" | sed ':a;N;$!ba;s/\n/\\n/g')
+
           # JSON Payload 생성
           DATA=$(cat <<EOF
           {
@@ -48,7 +51,7 @@ jobs:
                   },
                   {
                     "name": "배포 환경",
-                    "value": "\`network-api\`",
+                    "value": "\`$ENVIRONMENT\`",
                     "inline": false
                   },    
                   {
