@@ -39,16 +39,12 @@ jobs:
 
             - name: github api로 변경된 파일 가져오기
               run: |
-                jobs:
-    check-pr-changes:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Get PR changed files
-          run: |
-            CHANGED_FILES=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" \
-              | jq -r '.[].filename')
-            
-            echo "Changed files: $CHANGED_FILES"
-            echo "files=$CHANGED_FILES" >> $GITHUB_ENV
+                CHANGED_FILES=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                -H "Accept: application/vnd.github.v3+json" \
+                "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" \
+                | jq -r '.[].filename')
+
+                 echo "Changed files: $CHANGED_FILES"
+                echo "files=$CHANGED_FILES" >> $GITHUB_ENV
+
+
