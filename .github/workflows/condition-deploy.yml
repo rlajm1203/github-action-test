@@ -17,7 +17,7 @@ jobs:
 #                  contains(github.event.head_commit.removed, 'a/')
               run: |
                 echo "a 폴더가 변경 됨"
-                echo toJson(${{ github.event.head_commit.modified }})
+                echo ${{ github.event.head_commit.modified }}
 
             - name: b 폴더가 변경될 때
               if: contains(github.event.head_commit.modified, 'b/') || contains(github.event.head_commit.added, 'b/') ||
