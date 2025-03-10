@@ -38,34 +38,32 @@ jobs:
                 echo "Changed files: $CHANGED_FILES"
                 echo "files=$CHANGED_FILES" >> $GITHUB_ENV
 
-
-jobs:
-  check-pr-changes:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get PR changed files
-        run: |
-          PR_NUMBER="${{ github.event.pull_request.number }}"
-          if [ -z "$PR_NUMBER" ]; then
-            echo "Pull Request number is missing!"
-            exit 1
-          fi
-
-          API_URL="https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/files"
-          
-          echo "Fetching changed files from: $API_URL"
-          CHANGED_FILES=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "$API_URL")
-
-          echo "GitHub API Response: $CHANGED_FILES"
-          
-          FILE_LIST=$(echo "$CHANGED_FILES" | jq -r '.[].filename')
-
-          if [ -z "$FILE_LIST" ]; then
-            echo "No changed files found."
-            exit 0
-          fi
-
-          echo "Changed files: $FILE_LIST"
-          echo "files=$FILE_LIST" >> $GITHUB_ENV
+    check-pr-changes:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Get PR changed files
+          run: |
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+            if [ -z "$PR_NUMBER" ]; then
+              echo "Pull Request number is missing!"
+              exit 1
+            fi
+  
+            API_URL="https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/files"
+            
+            echo "Fetching changed files from: $API_URL"
+            CHANGED_FILES=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "$API_URL")
+  
+            echo "GitHub API Response: $CHANGED_FILES"
+            
+            FILE_LIST=$(echo "$CHANGED_FILES" | jq -r '.[].filename')
+  
+            if [ -z "$FILE_LIST" ]; then
+              echo "No changed files found."
+              exit 0
+            fi
+  
+            echo "Changed files: $FILE_LIST"
+            echo "files=$FILE_LIST" >> $GITHUB_ENV
