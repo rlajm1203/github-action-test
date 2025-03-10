@@ -1,0 +1,25 @@
+name: ??? ??
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: GitHub ?? ?? ????
+              uses: actions/checkout@v3
+
+            - name: a ??? ??? ?
+              if: contains(github.event.head_commit.modified, 'a/') || contains(github.event.head_commit.added, 'a/') ||
+                  contains(github.event.head_commit.removed, 'a/')
+              run: |
+                echo "a ??? ?? ?"
+
+            - name: b ??? ??? ?
+              if: contains(github.event.head_commit.modified, 'b/') || contains(github.event.head_commit.added, 'b/') ||
+                  contains(github.event.head_commit.removed, 'b/')
+              run: |
+                echo "b ??? ??? ?"
