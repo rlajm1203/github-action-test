@@ -30,13 +30,7 @@ jobs:
             - name: 헤드 커밋 출력
               run: |
                 echo '${{ toJson(github.event.head_commit) }}'
-
-            - name: git diff
-              run: |
-                CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-                echo "Changed files: $CHANGED_FILES"
-                echo "files=$CHANGED_FILES" >> $GITHUB_ENV
-
+                
             - name: github api로 변경된 파일 가져오기
               run: |
                 CHANGED_FILES=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
@@ -46,5 +40,13 @@ jobs:
 
                  echo "Changed files: $CHANGED_FILES"
                 echo "files=$CHANGED_FILES" >> $GITHUB_ENV
+
+            - name: git diff
+              run: |
+                CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+                echo "Changed files: $CHANGED_FILES"
+                echo "files=$CHANGED_FILES" >> $GITHUB_ENV
+
+            
 
 
