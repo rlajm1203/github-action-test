@@ -26,3 +26,7 @@ jobs:
                   contains(github.event.head_commit.removed, 'b/')
               run: |
                 echo "b 폴더가 변경될 됨"
+
+            - name: 헤드 커밋 출력
+              run: |
+                echo '${{ toJson(github.event.head_commit) }}'
