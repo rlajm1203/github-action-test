@@ -1,4 +1,4 @@
-name: ??? ??
+name: 조건부 배포
 
 on:
     push:
@@ -9,17 +9,17 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: GitHub ?? ?? ????
+            - name: GitHub 에서 레포 받아오기
               uses: actions/checkout@v3
 
-            - name: a ??? ??? ?
+            - name: a 폴더가 변경될 때
               if: contains(github.event.head_commit.modified, 'a/') || contains(github.event.head_commit.added, 'a/') ||
                   contains(github.event.head_commit.removed, 'a/')
               run: |
-                echo "a ??? ?? ?"
+                echo "a 폴더가 변경 됨"
 
-            - name: b ??? ??? ?
+            - name: b 폴더가 변경될 때
               if: contains(github.event.head_commit.modified, 'b/') || contains(github.event.head_commit.added, 'b/') ||
                   contains(github.event.head_commit.removed, 'b/')
               run: |
-                echo "b ??? ??? ?"
+                echo "b 폴더가 변경될 됨"
